@@ -1,22 +1,27 @@
 import './App.scss';
 
-import todosFromServer from './api/todos.json';
+import postsFromServer from './api/posts.json';
+import commentsFromServer from './api/comments.json';
 import usersFromServer from './api/users.json';
-import { TodoList } from './components/TodoList';
+import { PostList } from './components/PostList';
 
-function getUserById(userId) {
-  return usersFromServer.find(user => user.id === userId) || null;
+function findUser(userId) {
+  return usersFromServer.find(user => user.id === userId);
 }
 
-export const todos = todosFromServer.map(todo => ({
-  ...todo,
-  user: getUserById(todo.userId),
+function findComments(id) {
+  return commentsFromServer.filter(comment => comment.postId === id);
+}
+
+export const mergedInfo = postsFromServer.map(post => ({
+  ...post,
+  user: findUser(post.userId),
+  comments: findComments(post.id),
 }));
 
 export const App = () => (
-  <div className="App">
-    <h1 className="App__title">Static list of todos</h1>
-
-    <TodoList todos={todos} />
-  </div>
+  <section className="App">
+    <h1 className="App__title">Static list of posts</h1>
+    <PostList mergedInfo={mergedInfo} />
+  </section>
 );
