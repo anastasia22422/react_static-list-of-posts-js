@@ -2,35 +2,29 @@ iframe {
   display: none;
 }
 
-.App__title {
-  text-align: center;
+html {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 
-.PostInfo {
-  margin: 10px auto;
-  width: 90%;
+.TodoInfo {
+  width: max-content;
+  padding: 8px;
+  margin: 12px 0;
   border: 1px solid #000;
   border-radius: 8px;
-  background-color: lightgray;
-  padding: 1em;
+  background-color: antiquewhite;
 
   &__title {
-    margin: 0;
+    margin: 4px 0;
+    font-size: inherit;
+    color: #f00;
   }
 
-  &__header {
-    margin-bottom: 1em;
+  &--completed &__title {
+    color: #080;
   }
 }
 
 .UserInfo {
-  font-weight: bold;
-}
-
-.CommentList {
-  display: flex;
-  flex-direction: column;
-  gap: 0.7em;
-  background-color: #eee;
-  padding: 1em;
+  font-style: italic;
 }
