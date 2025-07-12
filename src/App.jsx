@@ -13,7 +13,7 @@ function findComments(id) {
   return commentsFromServer.filter(comment => comment.postId === id);
 }
 
-export const mergedInfo = postsFromServer.map(post => ({
+export const Posts = postsFromServer.map(post => ({
   ...post,
   user: findUser(post.userId),
   comments: findComments(post.id),
@@ -22,6 +22,6 @@ export const mergedInfo = postsFromServer.map(post => ({
 export const App = () => (
   <section className="App">
     <h1 className="App__title">Static list of posts</h1>
-    <PostList mergedInfo={mergedInfo} />
+    <PostList Posts={Posts} />
   </section>
 );
